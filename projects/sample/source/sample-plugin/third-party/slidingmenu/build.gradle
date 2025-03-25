@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion project.COMPILE_SDK_VERSION
-
+    namespace = "com.jeremyfeinstein.slidingmenu.lib"
 
     defaultConfig {
         minSdkVersion project.MIN_SDK_VERSION

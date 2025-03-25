@@ -11,7 +11,7 @@ import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformInvocation
 import com.android.build.api.transform.TransformOutputProvider
 import com.android.build.api.variant.VariantInfo
-import com.android.build.gradle.internal.pipeline.TransformManager
+//import com.android.build.gradle.internal.pipeline.TransformManager
 import com.google.common.collect.ImmutableList
 import com.google.common.io.Files
 import com.tencent.shadow.core.transform_kit.ClassTransform
@@ -30,9 +30,9 @@ class DeprecatedTransformWrapper(
     val project: Project, val classTransform: ClassTransform
 ) : Transform() {
     override fun getName(): String = "ShadowTransform"
+    //TODO
+    override fun getInputTypes(): MutableSet<QualifiedContent.ContentType> =mutableSetOf()
 
-    override fun getInputTypes(): MutableSet<QualifiedContent.ContentType> =
-        TransformManager.CONTENT_CLASS
 
     override fun isIncremental(): Boolean = false
 
@@ -45,8 +45,7 @@ class DeprecatedTransformWrapper(
         else variant.flavorNames.contains(ShadowTransform.ApplyShadowTransformFlavorName)
     }
 
-    override fun getScopes(): MutableSet<in QualifiedContent.Scope> =
-        TransformManager.SCOPE_FULL_PROJECT
+    override fun getScopes(): MutableSet<in QualifiedContent.Scope> =mutableSetOf()
 
     override fun transform(invocation: TransformInvocation) {
         //before Transform clean output

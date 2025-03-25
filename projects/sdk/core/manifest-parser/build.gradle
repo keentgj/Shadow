@@ -8,16 +8,18 @@ dependencies {
     testImplementation "commons-io:commons-io:$commons_io_jvm_version"
     testImplementation 'com.tencent.shadow.coding:java-build-config'
 }
-
+java{
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 compileKotlin {
     kotlinOptions {
-        jvmTarget = "1.6"
-        apiVersion = "1.3"// 兼容低版本Gradle和https://youtrack.jetbrains.com/issue/KT-39389
+        jvmTarget = "1.8"
     }
 }
 
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "1.6"
+        jvmTarget = "1.8"
     }
 }

@@ -21,7 +21,7 @@ apply plugin: 'com.tencent.shadow.plugin'
 
 android {
     compileSdkVersion project.COMPILE_SDK_VERSION
-
+    namespace = "com.tencent.shadow.sample.plugin.app.lib"
     defaultConfig {
         applicationId 'com.tencent.shadow.sample.plugin.app'
         minSdkVersion project.MIN_SDK_VERSION
@@ -50,7 +50,9 @@ android {
     lintOptions {
         abortOnError false
     }
-
+    buildFeatures{
+        buildConfig = true
+    }
     // 将插件的资源ID分区改为和宿主0x7F不同的值
     aaptOptions {
         additionalParameters "--package-id", "0x7E", "--allow-reserved-package-id"

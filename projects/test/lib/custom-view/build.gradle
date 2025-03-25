@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion project.COMPILE_SDK_VERSION
-
+    namespace="com.tencent.shadow.test.lib.custom_view"
 
     defaultConfig {
         minSdkVersion project.MIN_SDK_VERSION

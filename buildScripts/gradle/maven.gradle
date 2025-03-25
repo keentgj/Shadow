@@ -1,4 +1,4 @@
-task buildSdk() {
+tasks.register('buildSdk') {
     dependsOn gradle.includedBuild('core').task(':gradle-plugin:assemble')
     dependsOn gradle.includedBuild('core').task(':manifest-parser:assemble')
     dependsOn gradle.includedBuild('core').task(':common:assemble')
@@ -21,19 +21,19 @@ task buildSdk() {
     dependsOn gradle.includedBuild('dynamic').task(':dynamic-manager-multi-loader-ext:assemble')
 }
 
-task jvmTestSdk() {
+tasks.register('jvmTestSdk') {
     dependsOn gradle.includedBuild('coding').task(':test')
     dependsOn gradle.includedBuild('core').task(':test')
     dependsOn gradle.includedBuild('dynamic').task(':test')
     dependsOn ':common-jar-settings-test:testJavacBootclasspath'
 }
 
-task androidTestSdk() {
+tasks.register('androidTestSdk') {
     dependsOn gradle.includedBuild('core').task(':manager-db-test:connectedDebugAndroidTest')
     dependsOn ':test-dynamic-host:connectedTarget28DebugAndroidTest'
 }
 
-task testSdk() {
+tasks.register('testSdk') {
     dependsOn jvmTestSdk
     dependsOn androidTestSdk
 }
@@ -85,8 +85,8 @@ def sourceJar(String name, String path) {
         description = "package ${name} source to jar"
         from "$path/src/main/java"
         from "$path/src/main/kotlin"
-        destinationDir = file("$path/build/libs/")
-        classifier = 'sources'
+        destinationDirectory.set(file("$path/build/libs/"))
+        archiveClassifier.set('sources')
     }
 }
 
